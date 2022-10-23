@@ -6,3 +6,6 @@ build/
 .settings/
 .springBeans
 src/main/webapp/WEB-INF/props/jdbc.properties
+src/main/webapp/WEB-INF/spring/root-context.xml
+src/main/webapp/WEB-INF/spring/root-context.xml
+pom.xml
