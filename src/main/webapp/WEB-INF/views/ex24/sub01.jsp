@@ -27,7 +27,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${CustomerList }" var="customer">
+						<c:forEach items="${customerList }" var="customer">
 							<tr>
 								<td>${customer.id }</td>
 								<td>${customer.name }</td>
@@ -67,7 +67,7 @@
 				    		<c:param name="page" value="${pageNumber }"></c:param>
 				    	</c:url>
 				    	
-					    <li class="page-item ${pageInfo.current eq pageNumber ? 'active' : '' }"><a class="page-link" 
+					    <li class="page-item ${pageInfo.current == pageNumber ?'active' : '' }"><a class="page-link" 
 					    href="${pageLink }">${pageNumber }</a></li>
 				    </c:forEach>
 				    

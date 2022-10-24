@@ -1,4 +1,4 @@
-package org.zerock.controller.lecture.p06jdbc;
+package org.zerock.controller.lecture.p06controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
