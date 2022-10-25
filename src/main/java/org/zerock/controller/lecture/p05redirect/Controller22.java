@@ -6,8 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.controller.domain.lecture.JavaBean01;
-import org.zerock.controller.domain.lecture.Student;
+import org.zerock.domain.lecture.JavaBean01;
+import org.zerock.domain.lecture.Student;
 
 @Controller
 @RequestMapping("ex22")

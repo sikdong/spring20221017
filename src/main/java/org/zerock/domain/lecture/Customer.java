@@ -1,4 +1,4 @@
-package org.zerock.controller.domain.lecture;
+package org.zerock.domain.lecture;
 import lombok.Data;
 
 @Data

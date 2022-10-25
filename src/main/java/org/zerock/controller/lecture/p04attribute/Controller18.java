@@ -5,9 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.zerock.controller.domain.lecture.JavaBean01;
-import org.zerock.controller.domain.lecture.JavaBean02;
-import org.zerock.controller.domain.lecture.Student;
+import org.zerock.domain.lecture.JavaBean01;
+import org.zerock.domain.lecture.JavaBean02;
+import org.zerock.domain.lecture.Student;
 
 import lombok.Data;
 

@@ -2,8 +2,8 @@ package org.zerock.controller.lecture.p02param;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.zerock.controller.domain.lecture.JavaBean01;
-import org.zerock.controller.domain.lecture.JavaBean02;
+import org.zerock.domain.lecture.JavaBean01;
+import org.zerock.domain.lecture.JavaBean02;
 
 @Controller
 @RequestMapping("ex13")

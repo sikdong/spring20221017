@@ -3,7 +3,7 @@ package org.zerock.controller.lecture.p04attribute;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.zerock.controller.domain.lecture.JavaBean01;
+import org.zerock.domain.lecture.JavaBean01;
 
 @Controller
 @RequestMapping("ex17")
