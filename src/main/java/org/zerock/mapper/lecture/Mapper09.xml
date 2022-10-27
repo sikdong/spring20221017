@@ -16,7 +16,8 @@
 	</select>
 
 	<select id="getEmployeeFirstNameById" resultType="string">
-		SELECT FirstName FROM Employees WHERE EmployeeID = #{empId}
+		SELECT
+		FirstName FROM Employees WHERE EmployeeID = #{empId}
 	</select>
 
 	<select id="getCustomerNameByCityAndCountry" resultType="string">
@@ -27,5 +28,49 @@
 		WHERE
 		City = #{city}
 		AND Country= #{country}
+	</select>
+
+	<select id="getSupplierNameByCityAndCountry" resultType="string">
+		SELECT
+		SupplierName
+		FROM
+		Suppliers
+		WHERE
+		Country = #{country}
+		AND City= #{city}
+	</select>
+
+	<select id="getContactName" resultType="string">
+		SELECT
+		ContactName
+		FROM
+		Customers
+		WHERE
+		CustomerName = #{name}
+		AND Country =
+		#{country}
+		<!-- mapper 메소드의 파라미터를 빈으로 받을 때 1개인 경우 xml 에 property명을 써주면 됨 -->
+	</select>
+
+	<select id="getSupplierContactName" resultType="string">
+		SELECT
+		ContactName
+		FROM
+		Suppliers
+		WHERE
+		SupplierName = #{name}
+		AND Country =
+		#{country}
+	</select>
+
+	<select id="getProductName" resultType="string">
+		SELECT
+		ProductName
+		FROM
+		Products
+		WHERE
+		CategoryId = #{arg1.id}
+		AND Price >= #{arg2.price}
+
 	</select>
 </mapper>
