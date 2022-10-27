@@ -12,10 +12,30 @@
 
 	<delete id="removeEmployee">
 		DELETE FROM Employees
-		WHERE EmployeeID = 1
+		WHERE EmployeeID = #{id}
 
 	</delete>
 
+	<insert id="addCustomer">
+		INSERT INTO Customers
+		(CustomerName, ContactName, Address, City, PostalCode, Country)
+		VALUES
+		('SON', 'HM', 'LONDON', 'LONDON', '111111', 'UK')
+	</insert>
+
+	<insert id="addSupplier">
+		INSERT INTO Director
+		(name)
+		VALUES
+		('SON')
+	</insert>
+
+	<insert id="insertCustomer">
+		INSERT INTO Customers
+		(CustomerName, ContactName, Address, City, PostalCode, Country)
+		VALUES
+		(#{name}, #{contactName}, #{address}, #{city}, #{postalCode}, #{country})
+	</insert>
 
 
 
