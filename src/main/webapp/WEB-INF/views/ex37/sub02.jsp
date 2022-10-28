@@ -12,7 +12,7 @@
 <body>
 
 	<form action="" method="get">
-		<input type="text" name="name">
+		<input type="text" name="name" value="${supplier.name }">
 		<input type="submit" value="조회">
 	</form>
 	
