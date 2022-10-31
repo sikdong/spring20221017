@@ -25,7 +25,7 @@
 				</c:if>
 			
 				<c:if test="${not empty deletemessage }">
-					<div class="alert">${deletemessage }</div>
+					<div class="alert alert-success">${deletemessage }</div>
 				</c:if>
 			
 				<h1>게시물 목록</h1>
