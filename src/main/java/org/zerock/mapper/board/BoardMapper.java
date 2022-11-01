@@ -7,7 +7,7 @@ import org.zerock.domain.board.BoardDto;
 public interface BoardMapper {
 	int insert(BoardDto board);
 
-	List<BoardDto> list(int offset, int records, String keyword);
+	List<BoardDto> list(int offset, int records, String type, String keyword);
 
 	BoardDto select(int id);
 
@@ -15,5 +15,5 @@ public interface BoardMapper {
 
 	int delete(int id);
 
-	int countAll();
+	int countAll(String type,String keyword);
 }

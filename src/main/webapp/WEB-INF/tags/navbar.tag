@@ -5,6 +5,16 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
 	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
+<style>
+#searchTypeSelect{
+	width:auto;
+}
+#color {
+	color : white;
+}	
+</style>
+
 
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
@@ -16,7 +26,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
         <c:url value="/board/list" var="listLink"></c:url>
-          <a class="nav-link ${active eq 'list'?'active':'' }" href="${listLink }">목록</a>
+          <a id="color" class="btn btn-success nav-link ${active eq 'list'?'active':'' }" href="${listLink }">목록으로 돌아가기</a>
         </li>
         <li class="nav-item">
         <c:url value="/board/register" var="registerLink"></c:url>
@@ -24,7 +34,14 @@
         </li>
       </ul>
       <form action="${listLink }" class="d-flex" role="search">
-        <input valeu="${param.q }" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+      	<select name="t" id="searchTypeSelect" class="form-select">
+      		<option value="all">전체</option>
+      		<option value="title" ${param.t == 'title'? 'selected':'' }>제목</option>
+      		<option value="content"${param.t == 'content'? 'selected':'' }>본문</option>
+      		<option value="writer"${param.t == 'writer'? 'selected':'' }>작성자</option>
+      	</select>
+      
+        <input value="${param.q }" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
         <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
       </form>
     </div>

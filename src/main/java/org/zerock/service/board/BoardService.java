@@ -19,11 +19,11 @@ public class BoardService {
 		return mapper.insert(board);
 	}
 
-	public List<BoardDto> listBoard(int page, String keyword, PageInfo pageInfo) {
+	public List<BoardDto> listBoard(int page, String type, String keyword, PageInfo pageInfo) {
 		int records = 10;
 		int offset = (page - 1) * records;
 		
-		int countAll = mapper.countAll(); // SELECT Count(*) FROM Board
+		int countAll = mapper.countAll(type, "%" + keyword + "%"); // SELECT Count(*) FROM Board
 		int lastPage = (countAll - 1) / records + 1;
 		
 		int leftPageNumber = (page - 1) / 10 * 10 + 1;
@@ -48,7 +48,7 @@ public class BoardService {
 		pageInfo.setRightPageNumber(rightPageNumber);
 		pageInfo.setLastPageNumber(lastPage);
 		
-		return mapper.list(offset, records, "%" + keyword + "%");
+		return mapper.list(offset, records, type, "%" + keyword + "%");
 	}
 
 	public BoardDto get(int id) {
