@@ -2,6 +2,8 @@ package org.zerock.controller.board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.board.BoardDto;
+import org.zerock.domain.board.PageInfo;
 import org.zerock.service.board.BoardService;
 
 @Controller
@@ -45,10 +48,29 @@ public class BoardController {
 	}
 	
 	@GetMapping("list")
-	public void list(Model model) {
+	public void list(@RequestParam(name= "page", defaultValue="1") int page, 
+			PageInfo pageInfo, Model model) {
 		
-		List<BoardDto>list = service.listBoard();
+		List<BoardDto>list = service.listBoard(page, pageInfo);
 		model.addAttribute("boardList", list);
+	}
+	
+	// 위 list 메소드 파라미터 PageInfo에 일어나는 일을 풀어서 작성
+	private void list2(
+			@RequestParam(name = "page", defaultValue = "1") int page,
+			HttpServletRequest request,
+			Model model) {
+		// request param
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setLastPageNumber(Integer.parseInt(request.getParameter("lastPageNumber")));
+		model.addAttribute("pageInfo", pageInfo);
+		
+		// business logic
+		List<BoardDto> list = service.listBoard(page, pageInfo);
+		
+		// add attribute
+		model.addAttribute("boardList", list);
+		// forward
 	}
 	
 	@GetMapping("get")

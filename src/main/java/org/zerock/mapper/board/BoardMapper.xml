@@ -21,6 +21,7 @@
 	FROM
 		Board
 	ORDER BY id DESC
+	LIMIT #{offset}, #{records}
 	</select>
 	
 	<select id="select" resultType="org.zerock.domain.board.BoardDto">
@@ -49,5 +50,9 @@
 	DELETE FROM Board
 	WHERE id=#{id}
 	</delete>
+	
+	<select id="countAll" resultType="int">
+	SELECT COUNT(*) FROM Board
+	</select>
 
 </mapper>

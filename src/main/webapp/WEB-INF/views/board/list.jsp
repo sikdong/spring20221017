@@ -27,7 +27,6 @@
 				<c:if test="${not empty deletemessage }">
 					<div class="alert alert-success">${deletemessage }</div>
 				</c:if>
-			
 				<h1>게시물 목록</h1>
 				<table class="table">
 					<thead>
@@ -51,6 +50,24 @@
 						</c:forEach>
 					</tbody>
 				</table>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col">
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination">
+				  	<c:forEach begin="${pageInfo.leftPageNumber}" end="${pageInfo.rightPageNumber}" var="pageNumber">
+				  		<c:url value="/board/list" var="listLink">
+				  			<c:param name="page" value="${pageNumber }"></c:param>
+				  		</c:url>
+				    <li class="page-item
+				    <%-- 현재 페이지에 active 클래스 추가 --%>
+				    ${pageInfo.currentPageNumber eq pageNumber ? 'active' :'' } 
+				    "><a class="page-link" href="${listLink }">${pageNumber }</a></li>
+				  	</c:forEach>
+				  </ul>
+				</nav>
 			</div>
 		</div>
 	</div>
