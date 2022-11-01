@@ -8,4 +8,6 @@ public interface CustomerMapper {
 	public List<CustomerDto> show();
 	
 	public int register(CustomerDto customer);
+	
+	CustomerDto showCustomer(int id);
 }

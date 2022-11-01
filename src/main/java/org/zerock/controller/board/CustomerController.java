@@ -35,4 +35,10 @@ public class CustomerController {
 	public void register(CustomerDto customer) {
 		service.register(customer);
 	}
+	
+	@GetMapping("show")
+	public void showCustomer(int id, Model model) {
+		CustomerDto customer = service.showCustomer(id);
+		model.addAttribute("customerList", customer);
+	}
 }

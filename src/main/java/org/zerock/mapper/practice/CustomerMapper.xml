@@ -16,10 +16,23 @@
 	</select>
 	
 	<insert id="register">
-	INSERT INTO Customer
-	(CustomerName name, Address, City, Country)
+	INSERT INTO 
+	Customers(CustomerName, Address, City, Country)
 	VALUES
 	(#{name}, #{address}, #{city}, #{country})
 	
 	</insert>
+	
+	<select id="showCustomer" resultType="org.zerock.domain.practice.CustomerDto">
+		SELECT 
+			CustomerId id,
+			CustomerName name,
+			ContactName,
+			Address,
+			City,
+			PostalCode,
+			Country
+		FROM Customers
+		WHERE CustomerId = #{id}
+	</select>
 </mapper>

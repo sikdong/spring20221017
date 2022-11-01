@@ -43,7 +43,7 @@
 	<input class="form-control" type="text" name="country"> 
 	</div>
 	<br>
-	<input type="submit" value="등록">
+	<input class="btn btn-success" type="submit" value="등록">
 	</form>
 
 

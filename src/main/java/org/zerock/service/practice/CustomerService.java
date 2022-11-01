@@ -20,4 +20,8 @@ public class CustomerService {
 	public int register(CustomerDto customer) {
 		return mapper.register(customer);
 	}
+	
+	public CustomerDto showCustomer(int id) {
+		return mapper.showCustomer(id);
+	}
 }
