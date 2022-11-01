@@ -20,6 +20,9 @@
 		inserted
 	FROM
 		Board
+	WHERE title LIKE #{keyword}
+		OR Content LIKE #{keyword}
+		OR Writer LIKE #{keyword}
 	ORDER BY id DESC
 	LIMIT #{offset}, #{records}
 	</select>

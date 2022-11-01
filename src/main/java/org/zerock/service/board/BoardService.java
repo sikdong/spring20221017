@@ -11,7 +11,7 @@ import org.zerock.mapper.board.BoardMapper;
 
 @Service
 public class BoardService {
-	
+
 	@Autowired
 	private BoardMapper mapper;
 	
@@ -19,35 +19,51 @@ public class BoardService {
 		return mapper.insert(board);
 	}
 
-	public List<BoardDto> listBoard(int page, PageInfo pageInfo) {
+	public List<BoardDto> listBoard(int page, String keyword, PageInfo pageInfo) {
 		int records = 10;
 		int offset = (page - 1) * records;
 		
-		int countAll = mapper.countAll(); //SELECT Count(*) FROM Board
-		int lastPage = (countAll - 1) / records +1;
+		int countAll = mapper.countAll(); // SELECT Count(*) FROM Board
+		int lastPage = (countAll - 1) / records + 1;
 		
-		int leftPageNumber = (page-1)/10 * 10 +1;
+		int leftPageNumber = (page - 1) / 10 * 10 + 1;
 		int rightPageNumber = leftPageNumber + 9;
 		rightPageNumber = Math.min(rightPageNumber, lastPage);
 		
+		// 이전버튼 유무
+		boolean hasPrevButton = page > 10;
+		// 다음버튼 유무
+		boolean hasNextButton = page <= ((lastPage - 1) / 10 * 10);
 		
+		// 이전버튼 눌렀을 때 가는 페이지 번호
+		int jumpPrevPageNumber = (page - 1) / 10 * 10 - 9;
+		int jumpNextPageNumber = (page - 1) / 10 * 10 + 11; 
+		
+		pageInfo.setHasPrevButton(hasPrevButton);
+		pageInfo.setHasNextButton(hasNextButton);
+		pageInfo.setJumpPrevPageNumber(jumpPrevPageNumber);
+		pageInfo.setJumpNextPageNumber(jumpNextPageNumber);
 		pageInfo.setCurrentPageNumber(page);
 		pageInfo.setLeftPageNumber(leftPageNumber);
 		pageInfo.setRightPageNumber(rightPageNumber);
 		pageInfo.setLastPageNumber(lastPage);
 		
-		return mapper.list(offset, records);
+		return mapper.list(offset, records, "%" + keyword + "%");
 	}
 
 	public BoardDto get(int id) {
+		// TODO Auto-generated method stub
 		return mapper.select(id);
 	}
 
 	public int update(BoardDto board) {
-		return mapper.update(board);
+		
+		return mapper.update(board);	
 	}
 
 	public int remove(int id) {
 		return mapper.delete(id);
 	}
+	
 }
+
