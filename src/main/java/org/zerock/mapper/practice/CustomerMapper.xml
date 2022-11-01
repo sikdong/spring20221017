@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.zerock.mapper.practice.CustomerMapper">
+
+	<select id="show" resultType="org.zerock.domain.practice.CustomerDto">
+		SELECT 
+			CustomerId id,
+			CustomerName name,
+			Address,
+			City,
+			Country
+		FROM Customers
+	</select>
+	
+	<insert id="register">
+	INSERT INTO Customer
+	(CustomerName name, Address, City, Country)
+	VALUES
+	(#{name}, #{address}, #{city}, #{country})
+	
+	</insert>
+</mapper>
