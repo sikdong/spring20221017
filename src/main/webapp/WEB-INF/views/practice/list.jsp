@@ -77,7 +77,10 @@ h2 {
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
   <c:forEach begin="${pageButtonInfo.leftPageNumber }" end="${pageButtonInfo.rightPageNumber }" var="pageNumber">
-    <li class="page-item"><a class="page-link" href="#">${pageNumber}</a></li>
+  <c:url value="/practice/list" var="pageLink">
+  	<c:param name="page" value="${pageNumber}"></c:param>
+  </c:url>
+    <li class="page-item"><a class="page-link" href="${pageLink }">${pageNumber}</a></li>
   </c:forEach> 
   </ul>
 </nav>
