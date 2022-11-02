@@ -13,6 +13,7 @@
 			City,
 			Country
 		FROM Customers
+		LIMIT #{start}, #{end};
 	</select>
 	
 	<insert id="register">

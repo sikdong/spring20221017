@@ -13,7 +13,11 @@ public class CustomerService {
 	@Autowired
 	private CustomerMapper mapper;
 	
-	public List<CustomerDto> showList(){
+	public List<CustomerDto> showList(int page){
+		
+		int end = 10;
+		int start = (page - 1) * end;
+		
 		return mapper.show();
 	}
 	
