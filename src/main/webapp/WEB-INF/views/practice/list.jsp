@@ -75,12 +75,10 @@ h2 {
 </table>
 
 <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  <ul class="pagination justify-content-center">
+  <c:forEach begin="${pageButtonInfo.leftPageNumber }" end="${pageButtonInfo.rightPageNumber }" var="pageNumber">
+    <li class="page-item"><a class="page-link" href="#">${pageNumber}</a></li>
+  </c:forEach> 
   </ul>
 </nav>
 

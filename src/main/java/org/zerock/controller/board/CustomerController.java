@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.practice.CustomerDto;
+import org.zerock.domain.practice.PageButtonInfo;
 import org.zerock.service.practice.CustomerService;
 
 @Controller
@@ -24,8 +24,8 @@ public class CustomerController {
 	
 	@GetMapping("list")
 	public void showBoard(Model model, @RequestParam(name="page", 
-	defaultValue="1") int page) {
-		List<CustomerDto> list = service.showList(page);
+	defaultValue="1") int page, PageButtonInfo pageButtonInfo) {
+		List<CustomerDto> list = service.showList(page, pageButtonInfo);
 		model.addAttribute("showList", list);
 	}
 	
