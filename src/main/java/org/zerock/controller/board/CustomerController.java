@@ -44,4 +44,11 @@ public class CustomerController {
 		CustomerDto customer = service.showCustomer(id);
 		model.addAttribute("customerList", customer);
 	}
+	
+	@PostMapping("delete")
+	public String deleteCustomer(int id) {
+		int cnt = service.deleteCustomer(id);
+		System.out.println(cnt + "개 삭제됨?");
+		return "redirect:/practice/list";
+	}
 }

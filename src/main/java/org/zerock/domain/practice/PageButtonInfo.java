@@ -6,4 +6,5 @@ import lombok.Data;
 public class PageButtonInfo {
 	private double leftPageNumber;
 	private double rightPageNumber;
+	private int currentPageNumber;
 }

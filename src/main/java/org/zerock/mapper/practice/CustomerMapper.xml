@@ -36,4 +36,9 @@
 		FROM Customers
 		WHERE CustomerId = #{id}
 	</select>
+	
+	<delete id="deleteCustomer">
+		DELETE FROM Customers
+		WHERE id= #{id}
+	</delete>
 </mapper>

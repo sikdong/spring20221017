@@ -16,15 +16,16 @@ public class CustomerService {
 	private CustomerMapper mapper;
 	
 	public List<CustomerDto> showList(int page, PageButtonInfo pageButtonInfo){
-		
 		int end = 10;
 		int start = (page - 1) * end;
 		
-		int leftPageNumber = (page - 1) / 10 * 10 + 1;
-		int rightPageNumber = leftPageNumber + 5;
+		double leftPageNumber =Math.max(1, page-3);
+		double rightPageNumber = leftPageNumber + 5;
 		
 		pageButtonInfo.setLeftPageNumber(leftPageNumber);
 		pageButtonInfo.setRightPageNumber(rightPageNumber);
+		pageButtonInfo.setCurrentPageNumber(page);
+		
 		
 		return mapper.show(start, end);
 	}
@@ -35,5 +36,9 @@ public class CustomerService {
 	
 	public CustomerDto showCustomer(int id) {
 		return mapper.showCustomer(id);
+	}
+	
+	public int deleteCustomer(int id) {
+		return mapper.deleteCustomer(id);
 	}
 }

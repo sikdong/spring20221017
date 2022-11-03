@@ -25,7 +25,12 @@
 <h3>나라 : ${customerList.country }</h3> <br />
 
 <a class="btn btn-primary" href="">수정</a>
-<a class="btn btn-danger" href="">삭제</a>
+<c:url value="/practice/delete" var="deleteLink">
+	<c:param name="id" value="${param.id }"></c:param>
+</c:url>
+<form action="${deleteLink }" method="post">
+	<input type="submit" value="삭제">
+</form>
 
 </body>
 </html>

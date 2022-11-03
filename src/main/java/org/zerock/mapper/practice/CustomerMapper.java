@@ -10,4 +10,6 @@ public interface CustomerMapper {
 	public int register(CustomerDto customer);
 	
 	CustomerDto showCustomer(int id);
+	
+	public int deleteCustomer(int id);
 }
