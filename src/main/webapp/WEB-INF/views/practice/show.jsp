@@ -26,9 +26,9 @@
 
 <a class="btn btn-primary" href="">수정</a>
 <c:url value="/practice/delete" var="deleteLink">
-	<c:param name="id" value="${param.id }"></c:param>
 </c:url>
 <form action="${deleteLink }" method="post">
+	<input type="hidden" name="id" value="${customerList.id }" />
 	<input type="submit" value="삭제">
 </form>
 

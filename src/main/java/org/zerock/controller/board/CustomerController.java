@@ -46,9 +46,12 @@ public class CustomerController {
 	}
 	
 	@PostMapping("delete")
-	public String deleteCustomer(int id) {
+	public String deleteCustomer(int id, RedirectAttributes rttr) {
 		int cnt = service.deleteCustomer(id);
-		System.out.println(cnt + "개 삭제됨?");
+		if(cnt == 1) {
+			
+		rttr.addFlashAttribute("message", "id + '번 고객 정보가 삭제 되었습니다'");
+		}
 		return "redirect:/practice/list";
 	}
 }

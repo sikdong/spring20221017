@@ -16,12 +16,18 @@ background-color : ivory;
 h2 {
 	text-align : center;
 }
+.message{
+background-color : teal;
+color : white;
+height : 50px;
+}
 </style>
 
 </head>
 <body>
 
 <h2>고객 명단</h2>
+<div class="message">${message }</div>
 <c:url value="/practice/register" var="registerPage">
 </c:url>
 <ul class="nav">
@@ -33,11 +39,11 @@ h2 {
   
   <!-- 고객 삭제 버튼 -->
   <li class="nav-item">
-    <a class="nav-link" href="#">고객 삭제</a>
+    <a class="nav-link" href="#"></a>
   </li>
   
   <li class="nav-item">
-    <a class="nav-link" href="#">#</a>
+    <a class="nav-link" href="#"></a>
   </li>
 </ul>
 <table class="table">

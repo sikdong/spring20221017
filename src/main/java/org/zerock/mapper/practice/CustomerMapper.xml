@@ -39,6 +39,19 @@
 	
 	<delete id="deleteCustomer">
 		DELETE FROM Customers
-		WHERE id= #{id}
+		WHERE CustomerId= #{id}
 	</delete>
+	
+	<update id="updateCustomer">
+		UPDATE Customer
+		SET 
+			CustomerId = #{id},
+			CustomerName = #{name},
+			Address = #{address},
+			City = #{city},
+			PostalCode = #{postalCode},
+			Country = #{country}
+		WHERE 
+			CustomerId = #{id}
+	</update>
 </mapper>
