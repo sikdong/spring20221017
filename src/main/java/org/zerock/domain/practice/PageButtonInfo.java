@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class PageButtonInfo {
-	private int leftPageNumber;
-	private int rightPageNumber;
+	private double leftPageNumber;
+	private double rightPageNumber;
 }
