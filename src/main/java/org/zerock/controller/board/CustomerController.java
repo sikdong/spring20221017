@@ -29,6 +29,7 @@ public class CustomerController {
 		model.addAttribute("showList", list);
 	}
 	
+	//고객 정보 등록
 	@GetMapping("register")
 	public void register() {
 		
@@ -45,12 +46,23 @@ public class CustomerController {
 		model.addAttribute("customerList", customer);
 	}
 	
+	//고객 정보 삭제
 	@PostMapping("delete")
 	public String deleteCustomer(int id, RedirectAttributes rttr) {
 		int cnt = service.deleteCustomer(id);
 		if(cnt == 1) {
 			
-		rttr.addFlashAttribute("message", "id + '번 고객 정보가 삭제 되었습니다'");
+		rttr.addFlashAttribute("message", id + "번 고객 정보가 삭제 되었습니다");
+		}
+		return "redirect:/practice/list";
+	}
+	
+	// 고객 정보 갱신
+	@PostMapping("update")
+	public String updateCustomer(CustomerDto customer, RedirectAttributes rttr) {
+		int cnt = service.updateCustomer(customer);
+		if(cnt == 1) {
+			rttr.addFlashAttribute("message", customer.getId()+"번 고객 정보가 수정되었습니다");
 		}
 		return "redirect:/practice/list";
 	}

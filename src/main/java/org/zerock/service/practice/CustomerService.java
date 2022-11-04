@@ -19,8 +19,8 @@ public class CustomerService {
 		int end = 10;
 		int start = (page - 1) * end;
 		
-		double leftPageNumber =Math.max(1, page-3);
-		double rightPageNumber = leftPageNumber + 5;
+		double leftPageNumber = Math.max(1, page-3);
+		double rightPageNumber = Math.min(10,leftPageNumber + 5);
 		
 		pageButtonInfo.setLeftPageNumber(leftPageNumber);
 		pageButtonInfo.setRightPageNumber(rightPageNumber);
@@ -40,5 +40,8 @@ public class CustomerService {
 	
 	public int deleteCustomer(int id) {
 		return mapper.deleteCustomer(id);
+	}
+	public int updateCustomer(CustomerDto customer) {
+		return mapper.updateCustomer(customer);
 	}
 }

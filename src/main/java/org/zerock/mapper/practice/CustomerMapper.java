@@ -12,4 +12,6 @@ public interface CustomerMapper {
 	CustomerDto showCustomer(int id);
 	
 	public int deleteCustomer(int id);
+	
+	int updateCustomer(CustomerDto customer);
 }
