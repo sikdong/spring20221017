@@ -4,6 +4,20 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="org.zerock.mapper.lecture.Mapper11">
+	<insert id="insertSupplier" keyProperty="id" useGeneratedKeys="true">
+	INSERT INTO Suppliers(	 
+	SupplierId,
+	SupplierName,
+	ContactName,
+	Address,
+	City,
+	PostalCode,
+	Country,
+	Phone
+	)
+	VALUES(#{id},#{name},#{contactName},#{address},#{city},#{postalCode},
+	#{country},#{phone})
+	</insert>
 	<select id="getCustomerById" resultType="org.zerock.domain.lecture.JavaBean18">
 	SELECT 
 		CustomerID id,
@@ -15,6 +29,7 @@
 		Country
 	FROM 
 		Customers
+	WHERE CustomerId=#{id}
 		
 	
 	</select>
@@ -67,4 +82,8 @@
 	SET balance= balance +(#{money})
 	WHERE account = #{account}
 	</update>
+	
+	<delete id="deleteSupplier">
+	DELETE FROM Suppliers WHERE SupplierId=#{id}
+	</delete>
 </mapper>
