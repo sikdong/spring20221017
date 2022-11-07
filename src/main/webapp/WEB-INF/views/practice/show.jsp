@@ -31,6 +31,40 @@
 	<input type="hidden" name="id" value="${customerList.id }" />
 	<input type="submit" value="삭제">
 </form>
+<hr />
+<div id="message"></div>
+<input type="hidden" value="${customerList.id }" id="customerId" />
+<textarea name="" id="comment" cols="30" rows="5">
+</textarea>
+<button id="commentEnroll">댓글 등록</button>
 
+<div class="row">
+	<div class="col">
+		<div id="commentContainer"></div>
+	</div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
+<script>
+const ctx = "${pageContext.request.contextPath}";
+document.querySelector("#commentEnroll").addEventListener("click", function() {
+	const id = document.querySelector("#customerId").value;
+	const comment = document.querySelector("#comment").value;
+	const data = {id, comment};
+	fetch(`\${ctx}/comment/enroll`, {
+		method : "post",
+		headers : {
+			"Content-Type" : "application/json"
+		},
+		body : JSON.stringify(data)
+	})
+	.then(res=>res.json())
+	.then(data => {
+		document.querySelector("#message").innerText = data.message
+		document.querySelector("#comment").value=''
+	})
+});
+</script>
 </html>

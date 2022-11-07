@@ -5,7 +5,7 @@
   
 <mapper namespace="org.zerock.mapper.practice.CustomerMapper">
 	<!-- 버튼 마지막 페이지로 이동하기 위한 전체 항목 개수 구하기 -->
-<select id="countAll">
+<select id="countAll" resultType="int">
 SELECT Count(*)
 FROM Customers
 </select>
