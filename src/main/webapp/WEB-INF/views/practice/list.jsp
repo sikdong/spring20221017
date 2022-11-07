@@ -102,9 +102,9 @@ height : 50px;
    <c:if test="${pageButtonInfo.currentPageNumber <= 6 }">
     <li class="page-item">
     <c:url value="/practice/list" var="lastPage">
-    	<c:param name="page" value="${pageButtonInfo.LastPageNumber }"></c:param>
+    	<c:param name="page" value="${pageButtonInfo.lastPageNumber }"></c:param>
     </c:url>
-      <a class="page-link" href="${showList.lastPageNumber }" aria-label="Next">
+      <a class="page-link" href="${lastPage }" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li> 
