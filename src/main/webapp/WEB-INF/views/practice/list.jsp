@@ -82,13 +82,33 @@ height : 50px;
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
+  <c:if test="${pageButtonInfo.currentPageNumber > 6 }">
+  	 <li class="page-item">
+  	 <c:url value="/practice/list" var = "firstPage">
+  	 	<c:param name="page" value="1" ></c:param>
+  	 </c:url>
+      <a class="page-link" href="${firstPage }" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+  </c:if>
   <c:forEach begin="${pageButtonInfo.leftPageNumber }" end="${pageButtonInfo.rightPageNumber }" var="pageNumber">
-  <c:url value="/practice/list" var="pageLink">
-  	<c:param name="page" value="${pageNumber}"></c:param>
-  </c:url>
+	  <c:url value="/practice/list" var="pageLink">
+	  	<c:param name="page" value="${pageNumber}"></c:param>
+	  </c:url>
     <li class="page-item  ${pageButtonInfo.currentPageNumber == pageNumber?'active' :'' }">
     <a class="page-link" href="${pageLink }">${pageNumber}</a></li>
-  </c:forEach> 
+  </c:forEach>
+   <c:if test="${pageButtonInfo.currentPageNumber <= 6 }">
+    <li class="page-item">
+    <c:url value="/practice/list" var="lastPage">
+    	<c:param name="page" value="${pageButtonInfo.LastPageNumber }"></c:param>
+    </c:url>
+      <a class="page-link" href="${showList.lastPageNumber }" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li> 
+   </c:if>
   </ul>
 </nav>
 

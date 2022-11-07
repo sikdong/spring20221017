@@ -7,4 +7,5 @@ public class PageButtonInfo {
 	private double leftPageNumber;
 	private double rightPageNumber;
 	private int currentPageNumber;
+	private int lastPageNumber;
 }

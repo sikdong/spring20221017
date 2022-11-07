@@ -14,4 +14,6 @@ public interface CustomerMapper {
 	public int deleteCustomer(int id);
 	
 	int updateCustomer(CustomerDto customer);
+
+	int countAll();
 }
