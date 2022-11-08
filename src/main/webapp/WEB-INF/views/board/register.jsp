@@ -33,7 +33,7 @@
 	
 	<div class="mb-3">
 					<label for="" class="form-label">파일</label>
-					<input type="file" name="file" class="form-control" accept="image/*">
+					<input multiple type="file" name="files" class="form-control" accept="image/*">
 				</div>
 	
 	<div class="mb-3">

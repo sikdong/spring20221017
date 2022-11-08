@@ -3,6 +3,7 @@ package org.zerock.domain.board;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 import lombok.Data;
 
@@ -14,6 +15,7 @@ public class BoardDto {
 	private String writer;
 	private LocalDateTime inserted;
 	private int countReply;
+	private List<String> fileName;
 	public String getAgo() {
 		LocalDateTime now = LocalDateTime.now();
 		LocalDateTime oneDayBefore = now.minusDays(1);

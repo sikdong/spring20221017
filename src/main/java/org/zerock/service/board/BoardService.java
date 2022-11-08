@@ -23,10 +23,13 @@ public class BoardService {
 	private ReplyMapper replyMapper;
 	
 	@Transactional
-	public int register(BoardDto board, MultipartFile file) {
+	public int register(BoardDto board, MultipartFile[] files) {
 		
 		int cnt =  boardMapper.insert(board);
-		if (file != null && file.getSize() > 0) {
+		
+		for(MultipartFile file : files) {
+		
+		if (files != null && file.getSize() > 0) {
 			// db에 파일 정보 저장
 			boardMapper.insertFile(board.getId(), file.getOriginalFilename());
 
@@ -44,6 +47,7 @@ public class BoardService {
 				throw new RuntimeException(e);
 			}
 
+			}
 		}
 		return cnt;
 	
