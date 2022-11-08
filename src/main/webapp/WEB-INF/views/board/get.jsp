@@ -41,6 +41,11 @@
 	<textarea rows="5" readonly class="form-control">${board.content }</textarea>
 	</div>
 	
+	<%-- 이미지 출력 --%>
+	<div>
+		<img src="/image/${board.id }/${board.fileName}" alt="">
+	</div>
+	
 	<div class="mb-3">
 	<label class="form-label">
 	작성자
@@ -55,21 +60,37 @@
 	<input class="form-control" type="datetime-local" value="${board.inserted }" readonly>
 	</div>
 	
-	<div id="message"></div>
+	<div id="replyMessageToast" class="toast align-items-center top-0 start-50 translate-middle-x position-fixed" role="alert" aria-live="assertive" aria-atomic="true">
+	  <div class="d-flex">
+	    <div id="replyMessage1" class="toast-body">
+	      Hello, world! This is a toast message.
+	    </div>
+	    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+	  </div>
+	</div>
+	
 	<div class="container-md">
 		<div class="row">
 			<div class="col">
+				<h3><i class="fa-solid fa-comments"></i></h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<%-- 댓글 작성 --%>
 				<input type="hidden" id="boardId" value="${board.id}">
-				<input type="text" id="replyInput1">
-				<button id="replySendButton1">댓글 쓰기</button>
+				<div class="input-group">
+					<input type="text" class="form-control" id="replyInput1">
+					<button class="btn btn-outline-secondary" id="replySendButton1"><i class="fa-solid fa-reply"></i></button>
+				</div>
 			</div>
 		</div>
 	</div>
 	
-	<div class="row">
+	<div class="row mt-3">
 		<div class="col">
-			<div id="replyListContainer">
-				
+			<div class="list-group" id="replyListContainer">
+					<%-- 댓글 리스트 출력되는 곳 --%>
 			</div>
 		</div>
 	</div>
@@ -105,7 +126,7 @@
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
-	        <input type="text" id="modifyReplyInput">
+	        <input type="text" id="modifyReplyInput" class="form-control">
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -124,6 +145,9 @@
 <script>
 const ctx = "${pageContext.request.contextPath}";
 
+//댓글 crud 메시지 토스트
+const toast = new bootstrap.Toast(document.querySelector("#replyMessageToast"));
+
 listReply();
 
 document.querySelector("#modifyFormModalSubmitButton").addEventListener("click", function() {
@@ -139,7 +163,9 @@ document.querySelector("#modifyFormModalSubmitButton").addEventListener("click",
 		body : JSON.stringify(data)
 	})
 	.then(res => res.json())
-	.then(data => document.querySelector("#replyMessage1").innerText = data.message)
+	.then(data => {document.querySelector("#replyMessage1").innerText = data.message
+					toast.show()	
+	})
 	.then(() => listReply());
 });
 
@@ -170,10 +196,24 @@ function listReply() {
 			const removeReplyButtonId= `removeReplyButton\${item.id}`;
 			// console.log(item.id);
 			const replyDiv = 
-				`<div>
-					\${item.content} : \${item.inserted}
-					<button data-bs-toggle="modal" data-bs-target="#modifyReplyFormModal" data-reply-id="\${item.id}" id="\${modifyReplyButtonId}">수정</button>
-					<button data-bs-toggle="modal" data-bs-target="#removeReplyConfirmModal" data-reply-id="\${item.id}" id="\${removeReplyButtonId}">삭제</button>
+				`<div class="list-group-item d-flex">
+					<div class="me-auto">
+						<div>
+							\${item.content}
+						</div>
+						<small class="text-muted">
+						<i class="fa-regular fa-clock"></i> 
+						\${item.ago}
+							</small>
+				</div>
+				<div>
+				<button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modifyReplyFormModal" data-reply-id="\${item.id}" id="\${modifyReplyButtonId}">
+					<i class="fa-solid fa-pen"></i>
+				</button>
+				<button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#removeReplyConfirmModal" data-reply-id="\${item.id}" id="\${removeReplyButtonId}">
+					<i class="fa-solid fa-x"></i>
+				</button>
+				</div>
 				</div>`;
 				
 				replyListContainer.insertAdjacentHTML("beforeend", replyDiv);
@@ -203,7 +243,10 @@ function removeReply(replyId){
 		method : "delete"
 	})
 	.then(res => res.json())
-	.then(data => document.querySelector("#message").innerText = data.message)
+	.then(data => {
+			document.querySelector("#replyMessage1").innerText = data.message
+			toast.show()
+			})
 	.then(() => listReply());
 }
 
@@ -225,8 +268,9 @@ document.querySelector("#replySendButton1").addEventListener("click", function()
 	})
 	.then(res => res.json())
 	.then(data => {
-		document.querySelector("#message").innerText = data.message;
-		document.querySelector("#replyInput1").value='';
+		document.querySelector("#replyInput1").value=''
+		document.querySelector("#replyMessage1").innerText = data.message
+		toast.show()
 	})
 	.then(() => listReply());
 });

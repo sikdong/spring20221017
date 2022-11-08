@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.board.BoardDto;
 import org.zerock.domain.board.PageInfo;
@@ -30,12 +31,15 @@ public class BoardController {
 	}
 	
 	@PostMapping("register")
-	public String register(BoardDto board, RedirectAttributes rttr){
+	public String register(
+			BoardDto board,
+			MultipartFile file,
+			RedirectAttributes rttr){
 		                // 디스패쳐 서블릿이 알아서 넣어주기때문에 인수로만 받으면 됨
 		//request param 수집/ 가공
 		
 		//business 로직 
-		int cnt = service.register(board);
+		int cnt = service.register(board, file);
 		if(cnt == 1) {
 			rttr.addFlashAttribute("message", "새 게시물이 등록되었습니다.");
 			} else {

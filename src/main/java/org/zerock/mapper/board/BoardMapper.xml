@@ -5,7 +5,12 @@
   
 <mapper namespace="org.zerock.mapper.board.BoardMapper">
 
-	<insert id="insert">
+	<insert id="insertFile">
+	INSERT INTO File (boardId, name)
+	VALUES (#{id}, #{fileName})
+	</insert>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
 	
 	INSERT INTO Board(title, content, writer)
 	VALUES(#{title}, #{content}, #{writer})

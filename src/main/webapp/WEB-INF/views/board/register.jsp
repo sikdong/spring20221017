@@ -14,7 +14,7 @@
 	<my:navbar active="register"></my:navbar>
 	
 	<h1>게시물 작성</h1>
-	<form id="registerForm" action="" method="post">
+	<form id="registerForm" action="" method="post" enctype="multipart/form-data">
 	
 	<div class="mb-3">
 	<label for="" class="form-label">
@@ -30,6 +30,11 @@
 	 <br>
 	<textarea class="form-control" name="content"></textarea>
 	</div>
+	
+	<div class="mb-3">
+					<label for="" class="form-label">파일</label>
+					<input type="file" name="file" class="form-control" accept="image/*">
+				</div>
 	
 	<div class="mb-3">
 		<label for="" class="form-label">
