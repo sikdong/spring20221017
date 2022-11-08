@@ -102,9 +102,9 @@ public class BoardController {
 	public String remove(Integer id, RedirectAttributes rttr) {
 		int cnt = service.remove(id);
 		if(cnt == 1) {
-			rttr.addFlashAttribute("deletemessage", "게시물이 삭제되었습니다");
+			rttr.addFlashAttribute("message", "게시물이 삭제되었습니다");
 		} else {
-			rttr.addFlashAttribute("deletemessage", "게시물이 삭제되지 못했습니다.");
+			rttr.addFlashAttribute("message", "게시물이 삭제되지 못했습니다.");
 		}
 		return"redirect:/board/list";
 	}

@@ -1,4 +1,4 @@
-package org.zerock.controller.board;
+package org.zerock.controller.practice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,8 @@ public class CustomerCommentController {
 	 
 	@PostMapping("enroll")
 	public void method1(@RequestBody CommentDto comment){
-		int cnt = service.enrollComment();
+	// json형식으로 넘어갔으니까 받을 객체가 있어야 함	
+	int cnt = service.enrollComment();
 		if(cnt == 1){
 			
 		}

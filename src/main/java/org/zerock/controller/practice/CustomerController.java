@@ -1,4 +1,4 @@
-package org.zerock.controller.board;
+package org.zerock.controller.practice;
 
 import java.util.List;
 

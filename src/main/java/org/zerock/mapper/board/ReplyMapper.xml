@@ -5,6 +5,12 @@
   
 <mapper namespace="org.zerock.mapper.board.ReplyMapper">
 	
+	
+	<delete id="deleteByBoardId">
+	DELETE FROM Reply
+	WHERE boardId = #{id}
+	</delete>
+	
 	<update id="update">
 	UPDATE Reply
 	SET
@@ -13,9 +19,6 @@
 		id = #{id}
 	</update>
 	
-
-
-
 	<select id="selectById" resultType="org.zerock.domain.board.ReplyDto">
 	SELECT
 		id,

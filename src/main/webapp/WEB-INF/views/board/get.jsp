@@ -156,7 +156,7 @@ function readReplyAndSetModalForm(id) {
 	});
 }
 
-
+// 댓글 목록 보여주는 함수 항상 실행되야 한다
 function listReply() {
 	const boardId = document.querySelector("#boardId").value;
 	fetch(`\${ctx}/reply/list/\${boardId}`)
