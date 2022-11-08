@@ -32,7 +32,9 @@
 	<input type="submit" value="삭제">
 </form>
 <hr />
-<div id="message"></div>
+<div id="message">
+${message }
+</div>
 <input type="hidden" value="${customerList.id }" id="customerId" />
 <textarea name="" id="comment" cols="30" rows="5">
 </textarea>
@@ -50,9 +52,9 @@
 <script>
 const ctx = "${pageContext.request.contextPath}";
 document.querySelector("#commentEnroll").addEventListener("click", function() {
-	const id = document.querySelector("#customerId").value;
-	const comment = document.querySelector("#comment").value;
-	const data = {id, comment};
+	const customerInfoId = document.querySelector("#customerId").value;
+	const content = document.querySelector("#comment").value;
+	const data = {customerInfoId, content};
 	fetch(`\${ctx}/comment/enroll`, {
 		method : "post",
 		headers : {
@@ -60,11 +62,11 @@ document.querySelector("#commentEnroll").addEventListener("click", function() {
 		},
 		body : JSON.stringify(data)
 	})
-	.then(res=>res.json())
+ 	.then(res=>res.json())
 	.then(data => {
 		document.querySelector("#message").innerText = data.message
 		document.querySelector("#comment").value=''
-	})
+	}) 
 });
 </script>
 </html>
