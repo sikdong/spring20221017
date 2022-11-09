@@ -32,7 +32,8 @@
 </form>
 	<input class="btn btn-danger" type="submit" value="삭제" 
 	data-bs-toggle="modal"
-	data-bs-target="#boardDeleteModal">
+	data-bs-target="#boardDeleteModal"> 
+	<%-- data-bs-target에 모달 id 적어넣을것, submit input 폼에서 따로 빼놓을 것 --%>
 <hr />
 <div id="message">
 ${message }
