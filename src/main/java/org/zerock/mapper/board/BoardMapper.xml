@@ -5,6 +5,11 @@
   
 <mapper namespace="org.zerock.mapper.board.BoardMapper">
 
+	<delete id="deleteFileByBoardIdAndFileName">
+	DELETE FROM File
+	WHERE boardId = #{id} AND name = #{fileName}
+	</delete>
+
 	<insert id="insertFile">
 	INSERT INTO File (boardId, name)
 	VALUES (#{id}, #{fileName})
@@ -23,9 +28,11 @@
 		    b.title,
 		    b.writer,
 		    b.inserted,
-		    COUNT(r.id) countReply
-		FROM Board b LEFT JOIN Reply r
-		on b.id=r.boardId
+		    COUNT(DISTINCT r.id) countReply,
+		    COUNT(DISTINCT f.id) countFile
+		FROM Board b 
+		LEFT JOIN Reply r ON b.id=r.boardId 
+		LEFT JOIN File f ON b.id=f.boardId
 	 	WHERE 
 	
 		<trim prefixOverrides="OR">
@@ -101,5 +108,10 @@
 		</if>
 		</trim> 
 	</select>
+	
+	<delete id="deleteFile">
+	DELETE FROM File
+	WHERE boardId=#{id}
+	</delete>
 
 </mapper>

@@ -16,6 +16,7 @@ public class BoardDto {
 	private LocalDateTime inserted;
 	private int countReply;
 	private List<String> fileName;
+	private int countFile;
 	public String getAgo() {
 		LocalDateTime now = LocalDateTime.now();
 		LocalDateTime oneDayBefore = now.minusDays(1);

@@ -20,7 +20,7 @@
 	<label for="" class="form-label">
 	제목 
 	</label>
-	<input class="form-control" type="text" name="title"> 
+	<input required="required" class="form-control" type="text" name="title"> 
 	</div>
 	
 	<div class="mb-3">
@@ -28,19 +28,19 @@
 	본문 
 	</label>
 	 <br>
-	<textarea class="form-control" name="content"></textarea>
+	<textarea required="required" class="form-control" name="content"></textarea>
 	</div>
 	
 	<div class="mb-3">
-					<label for="" class="form-label">파일</label>
-					<input multiple type="file" name="files" class="form-control" accept="image/*">
-				</div>
+		<label for="" class="form-label">파일</label>
+		<input multiple type="file" name="files" class="form-control" accept="image/*">
+	</div>
 	
 	<div class="mb-3">
 		<label for="" class="form-label">
 	작성자 
 		</label>
-	<input class="form-control" type="text" name="writer"> 
+	<input required class="form-control" type="text" name="writer"> 
 	</div>
 	<br>
 	
@@ -74,7 +74,7 @@
 				"click", function() {
 					document.querySelector("#registerForm").submit();
 				});
-	</script>
+</script>
 
 </body>
 </html>
