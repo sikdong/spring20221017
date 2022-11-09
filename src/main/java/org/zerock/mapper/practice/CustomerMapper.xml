@@ -23,7 +23,7 @@ FROM Customers
 	</select>
 	
 	<!-- 고객 정보 신규 등록 post -->
-	<insert id="register">
+	<insert id="register" useGeneratedKeys="true" keyProperty="id">
 	INSERT INTO 
 	Customers(CustomerName, Address, City, Country)
 	VALUES

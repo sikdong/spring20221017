@@ -9,6 +9,16 @@ INSERT INTO Comment(customerInfoId, content)
 VALUES(#{customerInfoId}, #{content})
 </insert>
 
+<select id="showComment" resultType="org.zerock.domain.practice.CommentDto">
+SELECT 
+	content,
+	inserted
+FROM Comment
+WHERE customerInfoId = #{customerInfoId}
+ORDER BY id DESC;	
+
+</select>
+ 
 
 </mapper>
 

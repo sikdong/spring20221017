@@ -27,10 +27,12 @@
 <a class="btn btn-primary" href="">수정</a>
 <c:url value="/practice/delete" var="deleteLink">
 </c:url>
-<form action="${deleteLink }" method="post">
+<form id="deleteForm" action="${deleteLink }" method="post">
 	<input type="hidden" name="id" value="${customerList.id }" />
-	<input type="submit" value="삭제">
 </form>
+	<input class="btn btn-danger" type="submit" value="삭제" 
+	data-bs-toggle="modal"
+	data-bs-target="#boardDeleteModal">
 <hr />
 <div id="message">
 ${message }
@@ -47,10 +49,39 @@ ${message }
 </div>
 
 
+<!-- 게시물 삭제 확인 모달 -->
+<div class="modal fade" id="boardDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">삭제 확인</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        게시물을 삭제하시겠습니까?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+        <button id="deleteConfirmButton" type="button" class="btn btn-danger">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 <script>
+//수정확인 모달
+document.querySelector("#deleteConfirmButton").addEventListener("click", function(){
+	document.querySelector("#deleteForm").submit();
+})
+
 const ctx = "${pageContext.request.contextPath}";
+
+showComment();
+
 document.querySelector("#commentEnroll").addEventListener("click", function() {
 	const customerInfoId = document.querySelector("#customerId").value;
 	const content = document.querySelector("#comment").value;
@@ -66,7 +97,25 @@ document.querySelector("#commentEnroll").addEventListener("click", function() {
 	.then(data => {
 		document.querySelector("#message").innerText = data.message
 		document.querySelector("#comment").value=''
-	}) 
+	})
+	.then(() => showComment());
 });
+
+function showComment(){
+	const customerInfoId = document.querySelector("#customerId").value;
+	fetch(`\${ctx}/comment/show/\${customerInfoId}`)
+	.then(res => res.json())
+	.then(list =>{
+		const commentContainer = document.querySelector("#commentContainer");
+		commentContainer.innterHTML="";
+		for(const comment of list){
+			const commentDiv = 
+				`<div>\${comment.content}</div>
+				<div>\${comment.inserted}</div>
+				<hr>`;
+			commentContainer.insertAdjacentHTML("beforeend", commentDiv);
+		}
+	})
+}
 </script>
 </html>

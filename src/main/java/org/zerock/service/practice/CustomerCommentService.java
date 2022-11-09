@@ -1,5 +1,7 @@
 package org.zerock.service.practice;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.practice.CommentDto;
@@ -15,6 +17,11 @@ public class CustomerCommentService {
 	public int enrollComment(CommentDto comment) {
 		// TODO Auto-generated method stub
 		return mapper.enrollComment(comment);
+	}
+
+	public List<CommentDto> showComment(int customerInfoId) {
+		// TODO Auto-generated method stub
+		return mapper.showComment(customerInfoId);
 	}
 
 }

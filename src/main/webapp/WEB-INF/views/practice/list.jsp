@@ -26,7 +26,7 @@ height : 50px;
 </head>
 <body>
 
-<h2>고객 명단</h2>
+<h2>고객 명단<i class="fa-regular fa-rectangle-list"></i></h2>
 <div class="message">${message }</div>
 <c:url value="/practice/register" var="registerPage">
 </c:url>

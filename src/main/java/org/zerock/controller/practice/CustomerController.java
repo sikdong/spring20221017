@@ -36,8 +36,13 @@ public class CustomerController {
 	}
 	
 	@PostMapping("register")
-	public void register(CustomerDto customer) {
-		service.register(customer);
+	public String register(CustomerDto customer, RedirectAttributes rttr) {
+		int cnt = service.register(customer);
+		if(cnt == 1) {
+			
+			rttr.addFlashAttribute("message", customer.getId() + "번 고객 정보가 신규 등록 되었습니다");
+			}
+			return "redirect:/practice/list";
 	}
 	
 	@GetMapping("show")
