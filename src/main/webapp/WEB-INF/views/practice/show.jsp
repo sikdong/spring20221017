@@ -38,7 +38,7 @@
 <div id="message">
 ${message }
 </div>
-<input type="hidden" value="${customerList.id }" id="customerId" />
+<input type="hidden" value="${customerList.id }" id="customerId"/>
 <textarea name="" id="comment" cols="30" rows="5">
 </textarea>
 <button id="commentEnroll">댓글 등록</button>
@@ -80,7 +80,6 @@ document.querySelector("#deleteConfirmButton").addEventListener("click", functio
 })
 
 const ctx = "${pageContext.request.contextPath}";
-
 showComment();
 
 document.querySelector("#commentEnroll").addEventListener("click", function() {
@@ -99,8 +98,10 @@ document.querySelector("#commentEnroll").addEventListener("click", function() {
 		document.querySelector("#message").innerText = data.message
 		document.querySelector("#comment").value=''
 	})
-	.then(() => showComment());
+	.then(() =>showComment());
 });
+
+
 
 function showComment(){
 	const customerInfoId = document.querySelector("#customerId").value;
@@ -108,7 +109,7 @@ function showComment(){
 	.then(res => res.json())
 	.then(list =>{
 		const commentContainer = document.querySelector("#commentContainer");
-		commentContainer.innterHTML="";
+		commentContainer.innerHTML="";
 		for(const comment of list){
 			const commentDiv = 
 				`<div>\${comment.content}</div>
