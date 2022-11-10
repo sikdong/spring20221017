@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,6 +46,20 @@ public class CustomerCommentController {
 		return service.showComment(customerInfoId);
 	}
 	
+	@DeleteMapping("remove/{id}")
+	@ResponseBody
+	public Map<String, Object> remove(@PathVariable int id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		int cnt = service.removeComment(id);
+		
+		if(cnt == 1) {
+			map.put("message", "댓글이 삭제 되었습니다");
+			} else {
+				map.put("message", "새 댓글 삭제 X");
+			}
+		return map;
+		}
+	}
 	
 	
-}	
+	

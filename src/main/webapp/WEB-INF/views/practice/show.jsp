@@ -45,9 +45,11 @@ ${message }
 
 <div class="row">
 	<div class="col">
-		<div id="commentContainer"></div>
+		<div id="commentContainer">
+		</div>
 	</div>
 </div>
+
 
 
 <!-- 게시물 삭제 확인 모달 -->
@@ -74,12 +76,13 @@ ${message }
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 <script>
-//수정확인 모달
+const ctx = "${pageContext.request.contextPath}";
+
+//게시물 수정 확인 모달
 document.querySelector("#deleteConfirmButton").addEventListener("click", function(){
 	document.querySelector("#deleteForm").submit();
 })
 
-const ctx = "${pageContext.request.contextPath}";
 showComment();
 
 document.querySelector("#commentEnroll").addEventListener("click", function() {
@@ -112,12 +115,31 @@ function showComment(){
 		commentContainer.innerHTML="";
 		for(const comment of list){
 			const commentDiv = 
-				`<div>\${comment.content}</div>
-				<div>\${comment.inserted}</div>
+				`\${comment.content}
+				\${comment.inserted}
+				<button id="deleteCommentButton" class="btn btn-danger" >댓글 삭제</button>
 				<hr>`;
 			commentContainer.insertAdjacentHTML("beforeend", commentDiv);
 		}
 	})
+	.then(data => {
+		
+		document.querySelector("#deleteCommentButton").addEventListener("click", function(){
+		fetch(`\${ctx}/comment/remove/\${id}` , {
+			method : "delete"
+		})
+		.then(res => res.json())
+		.then(data => {
+			document.querySelector("#message").innerText = data.message;
+		})
+		.then(() =>showComment());
+	})
+})
+		
 }
+
+//댓글 삭제 버튼 
+
+
 </script>
 </html>

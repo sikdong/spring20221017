@@ -10,4 +10,6 @@ public interface CustomerCommentMapper {
 
 	public List<CommentDto> showComment(int customerInfoId);
 
+	public int removeComment(int id);
+
 }

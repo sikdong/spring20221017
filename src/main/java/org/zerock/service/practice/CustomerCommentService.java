@@ -24,4 +24,9 @@ public class CustomerCommentService {
 		return mapper.showComment(customerInfoId);
 	}
 
+	public int removeComment(int id) {
+		// TODO Auto-generated method stub
+		return mapper.removeComment(id);
+	}
+
 }

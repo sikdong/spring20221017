@@ -10,7 +10,8 @@ VALUES(#{customerInfoId}, #{content})
 </insert>
 
 <select id="showComment" resultType="org.zerock.domain.practice.CommentDto">
-SELECT 
+SELECT
+	id, 
 	content,
 	inserted
 FROM Comment
@@ -18,6 +19,11 @@ WHERE customerInfoId = #{customerInfoId}
 ORDER BY id DESC;	
 
 </select>
+
+<delete id="removeComment">
+DELETE FROM Comment
+WHERE id = #{id}
+</delete>
  
 
 </mapper>
