@@ -114,18 +114,25 @@ function showComment(){
 		const commentContainer = document.querySelector("#commentContainer");
 		commentContainer.innerHTML="";
 		for(const comment of list){
+			const deleteCommentButton = "deleteCommentButton\${comment.id}";
 			const commentDiv = 
 				`\${comment.content}
 				\${comment.inserted}
-				<button id="deleteCommentButton" class="btn btn-danger" >댓글 삭제</button>
+				<button id="\${deleteCommentButton}" class="btn btn-danger" 
+							data-comment-id="\${comment.id}">댓글 삭제</button>
 				<hr>`;
 			commentContainer.insertAdjacentHTML("beforeend", commentDiv);
+			document.querySelector("#"+deleteCommentButton).addEventListener("click", function(){
+				deleteComment(this.dataset.datacommentId);
+			}
 		}
-	})
-	.then(data => {
 		
-		document.querySelector("#deleteCommentButton").addEventListener("click", function(){
-		fetch(`\${ctx}/comment/remove/\${id}` , {
+	})
+}
+		
+deleteComment(){
+				
+		fetch(`\${ctx}/comment/remove/\${commentId}` , {
 			method : "delete"
 		})
 		.then(res => res.json())
@@ -134,9 +141,8 @@ function showComment(){
 		})
 		.then(() =>showComment());
 	})
-})
+}	
 		
-}
 
 //댓글 삭제 버튼 
 
