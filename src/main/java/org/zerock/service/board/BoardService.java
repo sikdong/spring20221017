@@ -152,11 +152,12 @@ public class BoardService {
 		File folder = new File(path);
 		
 		File[] listFiles = folder.listFiles();
-		
-		for(File file : listFiles) {
-			file.delete();
-		}
+		if(listFiles != null) {
+			for(File file : listFiles) {
+				file.delete();
+			}
 		folder.delete();
+		}
 		
 		
 		// db 파일 records 지우기
