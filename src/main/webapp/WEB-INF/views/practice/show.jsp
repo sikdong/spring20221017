@@ -114,7 +114,7 @@ function showComment(){
 		const commentContainer = document.querySelector("#commentContainer");
 		commentContainer.innerHTML="";
 		for(const comment of list){
-			const deleteCommentButton = "deleteCommentButton\${comment.id}";
+			const deleteCommentButton = `deleteCommentButton\${comment.id}`;
 			const commentDiv = 
 				`\${comment.content}
 				\${comment.inserted}
@@ -123,14 +123,16 @@ function showComment(){
 				<hr>`;
 			commentContainer.insertAdjacentHTML("beforeend", commentDiv);
 			document.querySelector("#"+deleteCommentButton).addEventListener("click", function(){
-				deleteComment(this.dataset.datacommentId);
-			}
-		}
+				deleteComment(this.dataset.commentId);
+			
+			});
+		};	
 		
-	})
-}
+	});
+};
 		
-deleteComment(){
+//댓글 삭제 
+function deleteComment(commentId){
 				
 		fetch(`\${ctx}/comment/remove/\${commentId}` , {
 			method : "delete"
@@ -140,11 +142,9 @@ deleteComment(){
 			document.querySelector("#message").innerText = data.message;
 		})
 		.then(() =>showComment());
-	})
-}	
+	};	
 		
 
-//댓글 삭제 버튼 
 
 
 </script>
