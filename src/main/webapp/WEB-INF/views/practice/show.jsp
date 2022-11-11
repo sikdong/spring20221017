@@ -24,7 +24,10 @@
 <h3>우편 : ${customerList.postalCode }</h3> <br />
 <h3>나라 : ${customerList.country }</h3> <br />
 
-<a class="btn btn-primary" href="">수정</a>
+<c:url value="/practice/update" var="updateCustomerLink">
+	<c:param name="id" value="${customerList.id }"></c:param>
+</c:url>
+<a class="btn btn-primary" href="${updateCustomerLink}">수정</a>
 <c:url value="/practice/delete" var="deleteLink">
 </c:url>
 <form id="deleteForm" action="${deleteLink }" method="post">
@@ -118,7 +121,7 @@ function showComment(){
 			const commentDiv = 
 				`\${comment.content}
 				\${comment.inserted}
-				<button id="\${deleteCommentButton}" class="btn btn-danger" 
+				<button id="\${deleteCommentButton}" class="btn btn-warning btn-sm" 
 							data-comment-id="\${comment.id}">댓글 삭제</button>
 				<hr>`;
 			commentContainer.insertAdjacentHTML("beforeend", commentDiv);

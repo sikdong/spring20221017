@@ -19,7 +19,6 @@
 
 <nav class="navbar navbar-expand-lg bg-light mb-3">
   <div class="container-fluid">
-    <a class="btn btn-warning navbar-brand" href="#">게시판</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -27,7 +26,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
         <c:url value="/board/list" var="listLink"></c:url>
-          <a id="color" class="btn btn-success nav-link ${active eq 'list'?'active':'' }" href="${listLink }">목록으로 돌아가기</a>
+          <a class="nav-link ${active eq 'list'?'active':'' }" href="${listLink }">게시글 목록</a>
         </li>
         <li class="nav-item">
         <c:url value="/board/register" var="registerLink"></c:url>

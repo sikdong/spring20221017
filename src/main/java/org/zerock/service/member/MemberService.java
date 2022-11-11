@@ -27,6 +27,17 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return mapper.showMemberInfo(id);
 	}
+
+	public int modifyMemberInfo(MemberDto member) {
+		// TODO Auto-generated method stub
+		return mapper.updateMemberInfo(member);
+		
+	}
+
+	public int remove(String id) {
+		// TODO Auto-generated method stub
+		return mapper.deleteMember(id);
+	}
 	
 	
 }

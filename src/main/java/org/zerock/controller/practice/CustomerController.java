@@ -44,8 +44,9 @@ public class CustomerController {
 			}
 			return "redirect:/practice/list";
 	}
-	
-	@GetMapping("show")
+	//고객 정보 보여주기
+	@GetMapping({"show", "update"})
+	// 이렇게 하면 같이 실행 가능
 	public void showCustomer(int id, Model model) {
 		CustomerDto customer = service.showCustomer(id);
 		model.addAttribute("customerList", customer);

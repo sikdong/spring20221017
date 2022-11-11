@@ -40,4 +40,19 @@ WHERE id=#{id}
 
 </select>
 
+<update id="updateMemberInfo">
+UPDATE 
+	Member
+SET 
+	password = #{password},
+	email = #{email}
+WHERE 
+	id= #{id}
+</update>
+
+<delete id="deleteMember">
+DELETE FROM Member
+WHERE id=#{id}
+</delete>
+
 </mapper>
