@@ -30,7 +30,7 @@ public class MemberController {
 		if (cnt == 1) {
 			// 가입 잘되면
 			rttr.addFlashAttribute("message", "회원 가입이 되었습니다");
-			return "redirect:/board/list";
+			return "redirect:/member/list";
 		} else {
 			rttr.addFlashAttribute("message", "회원 가입 실패하셨습니다");
 			rttr.addFlashAttribute("member", member);
