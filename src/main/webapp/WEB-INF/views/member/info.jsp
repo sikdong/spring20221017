@@ -14,21 +14,42 @@
 
 <body>
 <my:navbar></my:navbar>
-	
-<h3>회원 정보</h3>	
-아이디: ${memberList.id }
-<br>
-비밀번호: ${memberList.password }
-<br>
-이메일: ${memberList.email }
-<br>
-가입일시 : ${memberList.inserted }
-<br>
-<br>
+
+
+<div class="container-md">
+	<div class="row">
+		<div class="col">	
+			<h3>회원 정보</h3>
+				
+			<div class="mb-3">
+				<label for="" class="form-label">
+					아이디 
+				</label>
+				<input class="form-control" type="text" value="${member.id }" readonly>
+			</div>
+			
+			<div class="mb-3">
+				<label for="" class="form-label">
+					암호 
+				</label>
+				<input class="form-control" type="text" value="${member.password }" readonly>
+			</div>
+			<div class="mb-3">
+				<label for="" class="form-label">
+					이메일 
+				</label>
+				<input class="form-control" type="text" value="${member.email }" readonly>
+			</div>
+			<div class="mb-3">
+				<label for="" class="form-label">
+					가입일시 
+				</label>
+				<input class="form-control" type="text" value="${member.inserted }" readonly>
+			</div>
 <c:url value="/member/modify" var="updateMemberLink">
 	<c:param name="id" value="${memberList.id }"></c:param>
 </c:url>
-<a href="${updateMemberLink }" class="btn btn-info">회원 정보 수정</a>
+<a class="btn btn-warning" href="${updateMemberLink }">회원정보 수정</a>
 <c:url value="/member/remove" var="deleteMemberLink">
 	<c:param name="id" value="${memberList.id }"></c:param>
 </c:url>
@@ -36,7 +57,10 @@
 	<form action="${removeUrl }" method="post" id="deleteMemberInfoForm" >
 		<input type="hidden" name="id" value="${memberList.id }">
 	</form>
-		<input type="submit" value="탈퇴" data-bs-toggle="modal" data-bs-target="#deleteInfoConfirmModal">
+		<input class="btn btn-danger" type="submit" value="탈퇴" data-bs-toggle="modal" data-bs-target="#deleteInfoConfirmModal">
+		</div>
+	</div>
+</div>	
 	
 
 <!--회원 정보 삭제 확인 Modal -->
