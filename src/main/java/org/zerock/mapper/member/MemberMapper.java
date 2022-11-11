@@ -10,4 +10,6 @@ public interface MemberMapper {
 
 	List<MemberDto> selectAll();
 
+	MemberDto showMemberInfo(String id);
+
 }

@@ -13,7 +13,7 @@
 </head>
 <body>
 	<my:navbar active="memberList"></my:navbar>
-	<div class="container-md">
+	<div class="container-md"></div>
 		<div class="row">
 			<div class="col">
 			
@@ -24,7 +24,7 @@
 					</div>
 				</c:if>
 				
-				<h1>게시물 목록</h1>
+				<h1>회원 목록</h1>
 				<table class="table">
 					<thead>
 						<tr>
@@ -37,7 +37,14 @@
 					<tbody>
 						<c:forEach items="${memberList}" var="member">
 							<tr>
-								<td>${member.id }</td>
+							<c:url value="/member/info" var="memberInfoLink">
+								<c:param name="id" value="${member.id }"></c:param>
+							</c:url>
+								<td>
+									<a href="${memberInfoLink }">
+										${member.id }
+									</a>
+								</td>
 								<td>
 									${member.password }
 								</td>	

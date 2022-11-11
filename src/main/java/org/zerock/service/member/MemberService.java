@@ -22,6 +22,11 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return mapper.selectAll();
 	}
+
+	public MemberDto showMemberInfo(String id) {
+		// TODO Auto-generated method stub
+		return mapper.showMemberInfo(id);
+	}
 	
 	
 }

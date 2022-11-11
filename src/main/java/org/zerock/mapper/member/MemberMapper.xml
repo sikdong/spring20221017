@@ -28,4 +28,16 @@ ORDER BY
 
 </select>
 
+<select id="showMemberInfo" resultType="org.zerock.domain.member.MemberDto">
+SELECT 
+ 	id,
+ 	password,
+ 	email,
+ 	inserted
+FROM
+  	Member
+WHERE id=#{id}
+
+</select>
+
 </mapper>

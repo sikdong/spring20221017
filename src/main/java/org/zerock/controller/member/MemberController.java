@@ -42,4 +42,9 @@ public class MemberController {
 	public void list(Model model) {
 		model.addAttribute("memberList", service.list());
 	}
+	
+	@GetMapping("info")
+	public void info(Model model,String id){
+	model.addAttribute("memberList", service.showMemberInfo(id));
+	}
 }
