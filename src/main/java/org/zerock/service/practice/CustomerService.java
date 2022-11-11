@@ -15,13 +15,14 @@ public class CustomerService {
 	@Autowired
 	private CustomerMapper mapper;
 	
-	public List<CustomerDto> showList(int page, PageButtonInfo pageButtonInfo){
+	public List<CustomerDto> showList(int page, PageButtonInfo pageButtonInfo, 
+			String column, String keyword){
 		int end = 10;
 		int start = (page - 1) * end;
 		
 		double leftPageNumber = Math.max(1, page-3);
 		double rightPageNumber = Math.min(9,leftPageNumber + 5);
-		int countAll = mapper.countAll(); // SELECT Count(*) FROM Board
+		int countAll = mapper.countAll(column, "%"+keyword+"%"); // SELECT Count(*) FROM Board
 		int lastPageNumber = (countAll - 1) / end + 1;
 		
 		pageButtonInfo.setLeftPageNumber(leftPageNumber);
@@ -30,7 +31,7 @@ public class CustomerService {
 		pageButtonInfo.setLastPageNumber(lastPageNumber);
 		
 		
-		return mapper.show(start, end);
+		return mapper.show(start, end, column, "%"+keyword+"%");
 	}
 	
 	public int register(CustomerDto customer) {

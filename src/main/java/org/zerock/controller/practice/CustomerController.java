@@ -23,9 +23,13 @@ public class CustomerController {
 	
 	
 	@GetMapping("list")
-	public void showBoard(Model model, @RequestParam(name="page", 
-	defaultValue="1") int page, PageButtonInfo pageButtonInfo) {
-		List<CustomerDto> list = service.showList(page, pageButtonInfo);
+	public void showBoard(Model model, 
+			@RequestParam(name="page", defaultValue="1") int page, 
+			PageButtonInfo pageButtonInfo,
+			@RequestParam(name="column", defaultValue="all") String column,
+			@RequestParam(name="keyword", defaultValue="") String keyword
+			){
+		List<CustomerDto> list = service.showList(page, pageButtonInfo, column, keyword);
 		model.addAttribute("showList", list);
 	}
 	

@@ -19,6 +19,15 @@ FROM Customers
 			City,
 			Country
 		FROM Customers
+		WHERE
+		<trim prefixOverrides="OR">
+		<if test ="column =='all' or column=='city'">
+		OR City LIKE #{keyword}
+		</if>
+		<if test="column=='all' or column='country'">
+		OR Country LIKE #{Keyword}
+		</if>
+		</trim>
 		LIMIT #{start}, #{end};
 	</select>
 	

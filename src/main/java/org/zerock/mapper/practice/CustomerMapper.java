@@ -5,7 +5,7 @@ import java.util.List;
 import org.zerock.domain.practice.CustomerDto;
 
 public interface CustomerMapper {
-	public List<CustomerDto> show(int start, int end);
+	public List<CustomerDto> show(int start, int end, String column, String keyword);
 	
 	public int register(CustomerDto customer);
 	
@@ -15,5 +15,5 @@ public interface CustomerMapper {
 	
 	int updateCustomer(CustomerDto customer);
 
-	int countAll();
+	int countAll(String column, String keyword);
 }
