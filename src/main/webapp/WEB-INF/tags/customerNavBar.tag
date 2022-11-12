@@ -27,25 +27,18 @@
           <a class="nav-link ${active eq 'list'?'active':'' }" href="${customerListLink }">고객 목록</a>
         </li>
         <li class="nav-item">
-        <c:url value="/board/register" var="registerLink"></c:url>
-          <a class="nav-link ${active eq 'register'?'active':'' }" href="${registerLink }">작성</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link ${active eq 'memberList'?'active':'' }" href="${memberListLink }">회원목록</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link ${active eq 'signup'?'active':'' }" href="${signupLink }">회원가입</a>
+        <c:url value="/practice/register" var="registerLink"></c:url>
+          <a class="nav-link ${active eq 'register'?'active':'' }" href="${registerLink }">고객 신규 가입</a>
         </li>
       </ul>
       <form action="${listLink }" class="d-flex" role="search">
       	<select name="t" id="searchTypeSelect" class="form-select">
       		<option value="all">전체</option>
-      		<option value="title" ${param.t == 'title'? 'selected':'' }>제목</option>
-      		<option value="content"${param.t == 'content'? 'selected':'' }>본문</option>
-      		<option value="writer"${param.t == 'writer'? 'selected':'' }>작성자</option>
+      		<option value="city" ${param.column == 'City'? 'selected':'' }>도시</option>
+      		<option value="country"${param.column == 'Country'? 'selected':'' }>나라</option>
       	</select>
       
-        <input value="${param.q }" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+        <input value="${param.keyword }" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
         <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
       </form>
     </div>
