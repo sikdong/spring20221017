@@ -26,6 +26,7 @@ height : 50px;
 
 </head>
 <body>
+<my:navbar></my:navbar>
 
 <h2>고객 명단<i class="fa-regular fa-rectangle-list"></i></h2>
 <div class="message">${message }</div>
