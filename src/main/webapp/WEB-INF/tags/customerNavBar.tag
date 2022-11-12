@@ -31,14 +31,14 @@
           <a class="nav-link ${active eq 'register'?'active':'' }" href="${registerLink }">고객 신규 가입</a>
         </li>
       </ul>
-      <form action="${listLink }" class="d-flex" role="search">
-      	<select name="t" id="searchTypeSelect" class="form-select">
+      <form action="${customerListLink }" class="d-flex" role="search">
+      	<select name="column" id="searchTypeSelect" class="form-select">
       		<option value="all">전체</option>
       		<option value="city" ${param.column == 'City'? 'selected':'' }>도시</option>
       		<option value="country"${param.column == 'Country'? 'selected':'' }>나라</option>
       	</select>
       
-        <input value="${param.keyword }" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+        <input value="${param.keyword }" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
         <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
       </form>
     </div>
