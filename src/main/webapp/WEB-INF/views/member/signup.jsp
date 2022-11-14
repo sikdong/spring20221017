@@ -30,7 +30,7 @@
 							<button id="userIdExistButton1" class="btn btn-outline-secondary" type="button">중복확인</button>
 						</div>
 						
-						<div id="userIdText1" class="form-text"></div>
+						<div id="userIdText1" class="form-text">*아이디 중복확인이 필요합니다</div>
 						
 					</div>
 
@@ -59,7 +59,7 @@
 							<button id="presentEmailConfirmButton" type="button" class="btn btn-outline-secondary">중복확인</button>
 						</div>
 						
-						<div id="emailConfirmMessage" class="form-text"></div>
+						<div id="emailConfirmMessage" class="form-text">*이메일 중복확인이 필요합니다</div>
 					</div>
 
 					<input disabled class="btn btn-primary" type="submit" value="가입">
@@ -72,6 +72,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script>
 const ctx = "${pageContext.request.contextPath}"
+
+//아이디 사용 가능 여부 확인
+let availableId = false;
+let availableEmail = false;
+let availablePassword = false;
+
+function enableSubmitButton(){
+	
+} 
 
 document.querySelector("#userIdExistButton1").addEventListener("click", function(){
 	//입력된 userId를

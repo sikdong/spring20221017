@@ -25,26 +25,26 @@
 				<label for="" class="form-label">
 					아이디 
 				</label>
-				<input class="form-control" type="text" value="${member.id }" readonly>
+				<input class="form-control" type="text" value="${memberList.id }" readonly>
 			</div>
 			
 			<div class="mb-3">
 				<label for="" class="form-label">
 					암호 
 				</label>
-				<input class="form-control" type="text" value="${member.password }" readonly>
+				<input class="form-control" type="text" value="${memberList.password }" readonly>
 			</div>
 			<div class="mb-3">
 				<label for="" class="form-label">
 					이메일 
 				</label>
-				<input class="form-control" type="text" value="${member.email }" readonly>
+				<input class="form-control" type="email" value="${memberList.email }" readonly>
 			</div>
 			<div class="mb-3">
 				<label for="" class="form-label">
 					가입일시 
 				</label>
-				<input class="form-control" type="text" value="${member.inserted }" readonly>
+				<input class="form-control" type="text" value="${memberList.inserted }" readonly>
 			</div>
 <c:url value="/member/modify" var="updateMemberLink">
 	<c:param name="id" value="${memberList.id }"></c:param>

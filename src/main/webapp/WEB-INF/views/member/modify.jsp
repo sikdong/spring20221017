@@ -47,7 +47,7 @@
 						<label for="" class="form-label">
 							암호 확인
 						</label>
-						<input id="passwordInput2" class="form-control" type="password" value="${memberList.password }" name="password">
+						<input id="passwordInput2" class="form-control" type="password" value="${memberList.password }">
 					</div>
 					
 					<div class="mb-3">
@@ -76,7 +76,7 @@
 					<input type="hidden" name="id" value="${memberList.id }">
 					<input type="hidden" name="oldPassword">
 				</form>
-				<input class="btn btn-warning" type="submit" value="수정" data-bs-toggle="modal" data-bs-target="#modifyModal">
+				<input id="confirmInput" disabled class="btn btn-warning" type="submit" value="수정" data-bs-toggle="modal" data-bs-target="#modifyModal">
 				<input class="btn btn-danger" type="submit" value="탈퇴" data-bs-toggle="modal" data-bs-target="#removeModal">
 			</div>
 		</div>
@@ -121,6 +121,9 @@
 	</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script>
+
+
+
 const ctx = "${pageContext.request.contextPath}"
 const email = document.querySelector("#email");
 const emailConfirmButton = document.querySelector("#emailConfirmButton");
@@ -128,6 +131,8 @@ const emailConfirmMessage = document.querySelector("#emailConfirmMessage");
 
 emailConfirmButton.addEventListener("click", function(){
 	const presentEmail = email.value;
+		let passwordInput1 = document.querySelector("#passwordInput1").value;
+		let passwordInput2 = document.querySelector("#passwordInput2").value;
 	
 	fetch(ctx+"/member/existEmail", {
 		method : "post",
@@ -139,6 +144,9 @@ emailConfirmButton.addEventListener("click", function(){
 	.then(res => res.json())
 	.then(data => {
 		emailConfirmMessage.innerText = data.message;
+		if(data.status == "not exist"){
+			document.querySelector("#confirmInput").removeAttribute("disabled")
+		}
 	})
 	
 })
@@ -188,15 +196,20 @@ document.querySelector("#modalConfirmButton").addEventListener("click", function
 const passwordInput1 = document.querySelector("#passwordInput1");
 const passwordInput2 = document.querySelector("#passwordInput2");
 const passwordText1 = document.querySelector("#passwordText1");
-/* passwordInput1.addEventListener("keyup", matchPassword); */
+passwordInput1.addEventListener("keyup", matchPassword);
 passwordInput2.addEventListener("keyup", matchPassword);
 function matchPassword() {
 	if (passwordInput1.value == passwordInput2.value) {
 		passwordText1.innerText = "패스워드가 일치 합니다.";
+		document.querySelector("#confirmInput").removeAttribute("disabled")
+		
 	} else {
 		passwordText1.innerText = "패스워드가 일치하지 않습니다.";
+		document.querySelector("#confirmInput").setAttribute("disabled", "disabled")
 	}
 }
+
+
 </script>
 </body>
 </html>
