@@ -55,10 +55,10 @@
 							이메일 
 						</label>
 						<div class="input-group">
-							<input class="form-control" type="email" value="${memberList.email }" name="email">
-							<button type="button" class="btn btn-outline-secondary">중복확인</button>
+							<input id="email" class="form-control" type="email" value="${memberList.email }" name="email" data-old-value="${memberList.email }">
+							<button disabled id="emailConfirmButton" type="button" class="btn btn-outline-secondary">중복확인</button>
 						</div>
-						<div class="form-text">확인 메시지....</div>
+						<div id="emailConfirmMessage" class="form-text"></div>
 					</div>
 					
 					<div class="mb-3">
@@ -121,6 +121,43 @@
 	</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script>
+const ctx = "${pageContext.request.contextPath}"
+const email = document.querySelector("#email");
+const emailConfirmButton = document.querySelector("#emailConfirmButton");
+const emailConfirmMessage = document.querySelector("#emailConfirmMessage");
+
+emailConfirmButton.addEventListener("click", function(){
+	const presentEmail = email.value;
+	
+	fetch(ctx+"/member/existEmail", {
+		method : "post",
+		headers : {
+			"Content-Type" : "application/json"
+		},
+		body : JSON.stringify({presentEmail})
+	})
+	.then(res => res.json())
+	.then(data => {
+		emailConfirmMessage.innerText = data.message;
+	})
+	
+})
+
+email.addEventListener("keyup", function(){
+	const oldEmail = email.dataset.oldValue;
+	const presentEmail = email.value;
+	
+	if(oldEmail == presentEmail){
+		emailConfirmButton.setAttribute("disabled", "disabled")
+		emailConfirmMessage.innerText = ""
+	} else {
+		emailConfirmButton.removeAttribute("disabled")
+		emailConfirmMessage.innerText = "이메일 중복확인을 눌러주세요"
+	}
+})
+
+
+
 <%-- 탈퇴 모달 확인 버튼 눌렀을 때 --%>
 document.querySelector("#modalConfirmButton2").addEventListener("click", function() {
 	const form = document.forms.form2;
