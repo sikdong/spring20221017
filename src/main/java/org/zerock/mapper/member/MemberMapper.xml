@@ -37,8 +37,20 @@ SELECT
 FROM
   	Member
 WHERE id=#{id}
-
 </select>
+
+<select id="selectByEmail" resultType="org.zerock.domain.member.MemberDto">
+	SELECT 
+		id,
+		password,
+		email,
+		inserted
+	FROM
+		Member
+	WHERE
+		email = #{email}
+	</select>
+
 
 <update id="updateMemberInfo">
 UPDATE 

@@ -38,6 +38,12 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return mapper.deleteMember(id);
 	}
+
+
+	public MemberDto getByEmail(String email) {
+		// TODO Auto-generated method stub
+		return mapper.selectByEmail(email);
+	}
 	
 	
 }

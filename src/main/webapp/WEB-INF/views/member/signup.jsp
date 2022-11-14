@@ -26,11 +26,11 @@
 						</label>
 						
 						<div class="input-group">
-							<input class="form-control" type="text" name="id">
-							<button class="btn btn-outline-secondary" type="button">중복확인</button>
+							<input id="userIdInput1" class="form-control" type="text" name="id">
+							<button id="userIdExistButton1" class="btn btn-outline-secondary" type="button">중복확인</button>
 						</div>
 						
-						<div class="form-text">어떤 메시지....</div>
+						<div id="userIdText1" class="form-text"></div>
 						
 					</div>
 
@@ -39,7 +39,7 @@
 							암호
 						</label>
 						<input id="passwordInput1" class="form-control" type="text" name="password">
-						<div id="passwordText1" class="form-text">암호 확인 결과...</div>
+						<div id="passwordText1" class="form-text"></div>
 					</div>
 					
 					<div class="mb-3">
@@ -55,11 +55,11 @@
 						</label>
 						
 						<div class="input-group">
-							<input class="form-control" type="email" name="email">
-							<button type="button" class="btn btn-outline-secondary">중복확인</button>
+							<input id="presentEmailInput" class="form-control" type="email" name="email">
+							<button id="presentEmailConfirmButton" type="button" class="btn btn-outline-secondary">중복확인</button>
 						</div>
 						
-						<div class="form-text">확인 메시지....</div>
+						<div id="emailConfirmMessage" class="form-text"></div>
 					</div>
 
 					<input disabled class="btn btn-primary" type="submit" value="가입">
@@ -71,6 +71,39 @@
 	</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <script>
+const ctx = "${pageContext.request.contextPath}"
+
+document.querySelector("#userIdExistButton1").addEventListener("click", function(){
+	//입력된 userId를
+	const userId=document.querySelector("#userIdInput1").value;
+	
+	//fetch 요청 보내고
+	fetch(ctx+"/member/existId/"+userId)
+	.then(res => res.json())
+	.then(data => {
+	//응답 받아서 메세지 출력
+		document.querySelector("#userIdText1").innerText = data.message
+	})
+	
+	
+})
+
+document.querySelector("#presentEmailConfirmButton").addEventListener("click", function(){
+	const presentEmail = document.querySelector("#presentEmailInput").value;
+	fetch(ctx + "/member/existEmail", {
+		method : "post",
+		headers : {
+		"Content-Type" : "application/json"
+		},
+		body : JSON.stringify({presentEmail})
+		<%--presentemail 은 위에 변수명이 같고 controller에서도 같은 이름으로 받아야 생략 가능함 --%>
+	})
+	.then(res => res.json())
+	.then(data => {
+		document.querySelector("#emailConfirmMessage").innerText = data.message;
+	})
+})
+/* 패스워드 일치하는지 확인  */
 const passwordText1 = document.querySelector("#passwordText1");
 const passwordInput1 = document.querySelector("#passwordInput1");
 const passwordInput2 = document.querySelector("#passwordInput2");
