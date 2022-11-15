@@ -8,6 +8,15 @@
 <select id="countAll" resultType="int">
 SELECT Count(*)
 FROM Customers
+WHERE
+	<trim prefixOverrides="OR">
+	<if test ="column =='all' or column=='city'">
+	OR City LIKE #{keyword}
+	</if>
+	<if test="column=='all' or column='country'">
+	OR Country LIKE #{keyword}
+	</if>
+	</trim>
 </select>
 
 	<!-- list.jsp에서 고객 정보 보여지는 화면 get-->
